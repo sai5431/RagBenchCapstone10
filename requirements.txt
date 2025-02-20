@@ -1,0 +1,9 @@
+gradio
+transformers
+torch
+huggingface_hub
+pymilvus
+nltk
+sentence-transformers
+Groq
+tiktoken
