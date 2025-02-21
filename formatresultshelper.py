@@ -1,6 +1,5 @@
 import generationhelper
 import json
-from generationhelper import Enforce_token_limit
 
 def evaluate_response_with_prompt(templete, query, documents, answer, eval_model="llama-3.3-70b-specdec"):
 
@@ -15,8 +14,6 @@ def evaluate_response_with_prompt(templete, query, documents, answer, eval_model
     formatted_answer = "\n".join([f"{chr(97 + i)}. {sent}" for i, sent in enumerate(answer.split('. '))])
 
     prompt = templete.format(documents=formatted_documents, question=query, answer=formatted_answer)
-
-    Enforce_token_limit(prompt)
 
     # Call the LLM API (Llama 3.3-70B)
     completion = generationhelper.groq_client.chat.completions.create(

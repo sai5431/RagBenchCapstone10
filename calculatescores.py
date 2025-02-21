@@ -33,10 +33,10 @@ def compute_context_utilization(relevant_sentences, utilization_levels):
 def CalculateScores(relevant_sentence_keys,all_utilized_sentence_keys,support_keys,support_level,extarcted_row_for_given_id):
    #compute Context Relevance
    contextrel = compute_context_relevance(relevant_sentence_keys, support_keys)
-   print(f"Context Relevance = {contextrel}")
+   print(f"Compute Context Relevance = {contextrel}")
 
    contextutil = compute_context_utilization(relevant_sentence_keys, all_utilized_sentence_keys)
-   print(f"Context Utilization = {contextutil}")
+   print(f"Compute Context Utilization = {contextutil}")
 
    compnum = np.intersect1d(support_keys, all_utilized_sentence_keys)
    completenes = compnum.size / len(support_keys)
@@ -57,9 +57,6 @@ def CalculateScores(relevant_sentence_keys,all_utilized_sentence_keys,support_ke
    context_relevance_score = extarcted_row_for_given_id['relevance_score'].values[0]
    context_utilization_score = extarcted_row_for_given_id['utilization_score'].values[0]
    adherence_score = float(extarcted_row_for_given_id['adherence_score'].values[0])
-   print(context_relevance_score)
-   print(context_utilization_score)
-   print(adherence_score)
    docadherencearr = np.array([adherence_score, 0, 0])
    adherencearr = np.array([adherence, 0, 0])
    rmsecontextrel = mse(context_relevance_score, contextrel)

@@ -1,5 +1,6 @@
 #Search Milvus by generating an embedding for the query text. Returns the top_k most similar documents.
 #Retrieves all columns defined in the Milvus schema.
+import time
 
 def SearchTopKDocuments(collection, query_text, model, top_k=10):
 
@@ -11,6 +12,10 @@ def SearchTopKDocuments(collection, query_text, model, top_k=10):
         "metric_type": "COSINE",  # Similarity metric
         "params": {"ef": 64}      # Controls recall, higher values = better accuracy but slower
     }
+
+    # Start timing
+    start_time = time.time()
+    
 
     # Perform the search
     results = collection.search(
@@ -30,6 +35,13 @@ def SearchTopKDocuments(collection, query_text, model, top_k=10):
             "completeness_score"  # Completeness Score
         ]
     )
+
+    # End timing
+    end_time = time.time()
+
+    # Print process time
+    process_time = end_time - start_time
+    print(f"Milvus Search process completed in {process_time} seconds.")
 
     # Process and return the results
     top_documents = []

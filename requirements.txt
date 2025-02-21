@@ -6,4 +6,9 @@ pymilvus
 nltk
 sentence-transformers
 Groq
-tiktoken
+pandas 
+openpyxl 
+matplotlib 
+seaborn
+numpy
+
